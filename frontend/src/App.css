@@ -1,6 +1,7 @@
 .App {
   min-height: 100vh;
   display: flex;
+  background-color: aquamarine;
 }
 ::-webkit-scrollbar{
   width: 0px;
