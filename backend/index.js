@@ -54,13 +54,26 @@ io.on("connection", (socket) => {
   socket.on("new message", (newMessageReceived) => {
     var chat = newMessageReceived.chat;
     console.log(chat);
-    socket.in(chat._id).emit("message received", newMessageReceived);
-    // if (!chat.users) return console.log("chat.users does not exist");
-    // chat.users.forEach((user) => {
-    //   if (user._id == newMessageReceived.sender._id) return;
+    if (!chat.users) return console.log("chat.users does not exist");
+    chat.users.forEach((user) => {
+      if (user._id == newMessageReceived.sender._id) return;
 
-    // });
+      socket.in(chat._id).emit("message received", newMessageReceived);
+    });
   });
+
+  socket.on("disconnect", () => {
+    socket.broadcast.emit("call ended");
+  });
+
+  socket.on("calluser", ({ userToCall, signalData, from, name }) => {
+    io.to(userToCall).emit("callUser", { signal: signalData, from, name });
+  });
+  socket.on("answercall", (data) => {
+    io.to(data.to).emit("callaccepted", data.signal);
+  });
+  socket.emit("me", socket.id);
+
   socket.off("setup", () => {
     console.log("user disconnected");
     socket.leave(userData._id);
