@@ -8,10 +8,20 @@ import {
   Tabs,
   Text,
 } from "@chakra-ui/react";
+import React, { useEffect } from "react";
 import Login from "../components/Authentication/Login";
 import Signup from "../components/Authentication/signup";
+import { useNavigate } from "react-router";
 
 const Homepage = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("userInfo"));
+
+    if (!user) navigate("/chats");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [navigate]);
   return (
     <Container maxW="xl" centerContent>
       <Box
