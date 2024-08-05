@@ -8,7 +8,7 @@ const Notifications = () => {
 
   return (
     <>
-      {call.isReceivingCall && !callAccepted && (
+      {call.isReceivedCall && !callAccepted && (
         <Box display="flex" justifyContent="space-around" alignItems="center">
           <Text fontSize="2xl">{call.name} is calling:</Text>
           <Button colorScheme="blue" onClick={answerCall}>
