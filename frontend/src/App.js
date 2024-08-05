@@ -13,6 +13,7 @@ function App() {
       <Route path="/" element={<Homepage />} />
       <Route path="/chats" element={<Chatpage />} />
       {/* <ContextProvider> */}
+      <Route path="/news" element={<News />} />
       <Route
         path="/video"
         element={
