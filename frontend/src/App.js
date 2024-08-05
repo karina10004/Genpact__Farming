@@ -1,18 +1,31 @@
-// Import necessary modules
-import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import News from './pages/News'; // Make sure the path is correct
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Homepage from "./pages/Homepage";
+import Chatpage from "./pages/chatpage";
+import "./App.css";
+import Video from "./Video";
+import { ContextProvider } from "./SocketContext";
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Routes>
-          <Route path="/news" element={<News />} />
-          {/* Add other routes here as needed */}
-        </Routes>
-      </div>
-    </BrowserRouter>
+    //<Router>
+    <Routes>
+      <Route path="/" element={<Homepage />} />
+      <Route path="/chats" element={<Chatpage />} />
+      {/* <ContextProvider> */}
+      <Route path="/news" element={<News />} />
+      <Route
+        path="/video"
+        element={
+          <ContextProvider>
+            {" "}
+            <Video />
+          </ContextProvider>
+        }
+      />
+      {/* </ContextProvider> */}
+    </Routes>
+    // </Router>
   );
 }
 
