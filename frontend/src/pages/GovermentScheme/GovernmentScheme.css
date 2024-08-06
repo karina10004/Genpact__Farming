@@ -1,0 +1,125 @@
+/* Hero Section */
+.bg-hero {
+    background: url('/path/to/your/background-image.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.bg-primary {
+    background-color: #007bff;
+}
+
+/* Blog Section */
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+img.img-fluid {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+ul, ol {
+    margin-left: 2rem;
+}
+
+/* Sidebar */
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group input.form-control {
+    border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.input-group button.btn-primary {
+    border-radius: 0 0.25rem 0.25rem 0;
+}
+
+/* Category and Recent Posts */
+.bg-primary {
+    background-color: #007bff;
+}
+
+.fs-5 {
+    font-size: 1.25rem;
+}
+
+.fw-bold {
+    font-weight: 700;
+}
+
+.text-white {
+    color: #ffffff;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
+.mb-5 {
+    margin-bottom: 3rem;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.bg-white {
+    background-color: #ffffff;
+}
+
+.p-3 {
+    padding: 1rem;
+}
+
+.p-4 {
+    padding: 1.5rem;
+}
+
+.text-dark {
+    color: #343a40;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.flex-shrink-0 {
+    flex-shrink: 0;
+}
+
+.fs-5 {
+    font-size: 1.25rem;
+}
+
+.fw-bold {
+    font-weight: bold;
+}
+
+.bg-primary p {
+    color: #ffffff;
+}
+
+/* Utility Classes */
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.col-md-6, .col-lg-4, .col-lg-8 {
+    padding-left: 15px;
+    padding-right: 15px;
+}

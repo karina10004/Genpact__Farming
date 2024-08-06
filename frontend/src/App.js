@@ -12,6 +12,9 @@ import ExpertList from "./components/expertlist";
 import ExpertRequests from "./components/ExpertRequests";
 import ExpertCalls from "./components/ExpertCalls";
 import FarmerCalls from "./components/FarmerCalls";
+import GS from './pages/GovermentScheme/GovernmentScheme'
+import WeatherPage from './pages/WeatherPage/WeatherPage';
+
 function App() {
   return (
     //<Router>
@@ -26,6 +29,8 @@ function App() {
       <Route path="/requests" element={<ExpertRequests />} />
       <Route path="/farmer-calls" element={<FarmerCalls />} />
       <Route path="/expert-calls" element={<ExpertCalls />} />
+        <Route path="/GS" element={<GS />} />
+          <Route path="/Weather" element={<WeatherPage />} />
       <Route
         path="/join-call/:roomId"
         element={

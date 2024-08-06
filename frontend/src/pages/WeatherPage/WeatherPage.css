@@ -1,0 +1,25 @@
+.weather-widget, .external-website {
+    margin: 0px 10;
+  }
+
+  .weatherwidget-io {
+    width: 100% !important;
+    max-width: none !important;
+    font-family: Arial, sans-serif !important;
+  }
+  
+  .weatherwidget-io .weatherwidget-io-title {
+    color: #333 !important;
+    font-size: 1.5em !important;
+    font-weight: bold !important;
+  }
+  
+  .weatherwidget-io .weatherwidget-io-temperature {
+    color: #ff6600 !important;
+    font-size: 2em !important;
+  }
+  
+  .weatherwidget-io .weatherwidget-io-description {
+    color: #666 !important;
+    font-size: 1em !important;
+  }
