@@ -1,24 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Homepage from "./pages/Homepage";
+import Chatpage from "./pages/chatpage";
+import "./App.css";
+import Video from "./Video";
+import News from "./pages/News";
+import { ContextProvider } from "./SocketContext";
+import ExpertLogin from "../src/components/Authentication/ExpertLogin";
+import ExpertRegsiter from "../src/components/Authentication/ExpertRegistration";
+import ExpertList from "./components/expertlist";
+import ExpertRequests from "./components/ExpertRequests";
+import ExpertCalls from "./components/ExpertCalls";
+import FarmerCalls from "./components/FarmerCalls";
+import GS from './pages/GovermentScheme/GovernmentScheme'
+import WeatherPage from './pages/WeatherPage/WeatherPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    //<Router>
+    <Routes>
+      <Route path="/" element={<Homepage />} />
+      <Route path="/chats" element={<Chatpage />} />
+      {/* <ContextProvider> */}
+      <Route path="/news" element={<News />} />
+      <Route path="/expertlogin" element={<ExpertLogin />} />
+      <Route path="/expertregister" element={<ExpertRegsiter />} />
+      <Route path="/experts" element={<ExpertList />} />
+      <Route path="/requests" element={<ExpertRequests />} />
+      <Route path="/farmer-calls" element={<FarmerCalls />} />
+      <Route path="/expert-calls" element={<ExpertCalls />} />
+        <Route path="/GS" element={<GS />} />
+          <Route path="/Weather" element={<WeatherPage />} />
+      <Route
+        path="/join-call/:roomId"
+        element={
+          <ContextProvider>
+            {" "}
+            <Video />
+          </ContextProvider>
+        }
+      />
+
+      {/* </ContextProvider> */}
+    </Routes>
+    // </Router>
   );
 }
 
