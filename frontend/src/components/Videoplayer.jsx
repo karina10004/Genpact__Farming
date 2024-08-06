@@ -1,12 +1,27 @@
-import React, { useContext } from "react";
-import { Box, Text, Grid, GridItem } from "@chakra-ui/react";
-
+// src/components/VideoPlayer.js
+import React, { useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { Box, Text, Grid } from "@chakra-ui/react";
 import { SocketContext } from "../SocketContext";
+// import JoinCall from "../JoinCall";
 
-const VideoPlayer = () => {
-  const { name, callAccepted, myVideo, userVideo, callEnded, stream, call } =
-    useContext(SocketContext);
-
+const VideoPlayer = (props) => {
+  const {
+    name,
+    callAccepted,
+    myVideo,
+    userVideo,
+    callEnded,
+    stream,
+    call,
+    joinCall,
+    setup,
+  } = useContext(SocketContext);
+  const roomId = useParams();
+  useEffect(() => {
+    setup(roomId);
+    // joinCall(roomId);
+  }, []);
   return (
     <Grid
       templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}

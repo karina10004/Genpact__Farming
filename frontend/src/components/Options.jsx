@@ -15,8 +15,16 @@ import { PhoneIcon, CopyIcon, CloseIcon } from "@chakra-ui/icons";
 import { SocketContext } from "../SocketContext";
 
 const Options = ({ children }) => {
-  const { me, callAccepted, name, setName, callEnded, leaveCall, callUser } =
-    useContext(SocketContext);
+  const {
+    me,
+    callAccepted,
+    name,
+    setName,
+    callEnded,
+    leaveCall,
+    callUser,
+    toCall,
+  } = useContext(SocketContext);
   const [idToCall, setIdToCall] = useState("");
 
   return (
@@ -56,12 +64,12 @@ const Options = ({ children }) => {
               <Text fontSize="lg" mb={2}>
                 Make a call
               </Text>
-              <Input
+              {/* <Input
                 placeholder="ID to call"
                 value={idToCall}
                 onChange={(e) => setIdToCall(e.target.value)}
                 mb={4}
-              />
+              /> */}
               {callAccepted && !callEnded ? (
                 <Button
                   colorScheme="red"
@@ -76,7 +84,7 @@ const Options = ({ children }) => {
                   colorScheme="blue"
                   leftIcon={<PhoneIcon />}
                   w="100%"
-                  onClick={() => callUser(idToCall)}
+                  onClick={() => callUser(toCall)}
                 >
                   Call
                 </Button>

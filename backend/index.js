@@ -6,6 +6,8 @@ const dotenv = require("dotenv");
 const userRoute = require("./routes/userRoute");
 const chatRoute = require("./routes/chatRoute");
 const messageRoute = require("./routes/messageRoutes");
+const expertRoute = require("./routes/expert");
+const expertcallRoute = require("./routes/expertcall");
 const socketIO = require("socket.io");
 // const { notFound, errorHandler } = require("./middleware/errorMiddle");
 const app = express();
@@ -20,6 +22,8 @@ app.get("/", (req, res) => {
 app.use("/api/user", userRoute);
 app.use("/api/chat", chatRoute);
 app.use("/api/message", messageRoute);
+app.use("/api/expert", expertRoute);
+app.use("/api/call", expertcallRoute);
 // app.use(notFound);
 // app.use(errorHandler);
 
@@ -37,7 +41,7 @@ const io = socketIO(server, {
 });
 
 io.on("connection", (socket) => {
-  console.log("connected to socket.io");
+  console.log("connected to socket.io", socket.id);
   socket.on("setup", (userData) => {
     socket.join(userData._id);
     socket.emit("connected");
@@ -66,13 +70,21 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("call ended");
   });
 
-  socket.on("calluser", ({ userToCall, signalData, from, name }) => {
+  socket.on("callUser", ({ userToCall, signalData, from, name }) => {
+    console.log(from, name);
     io.to(userToCall).emit("callUser", { signal: signalData, from, name });
   });
+
   socket.on("answercall", (data) => {
     io.to(data.to).emit("callaccepted", data.signal);
   });
+
   socket.emit("me", socket.id);
+
+  socket.on("join:room", ({ roomId }) => {
+    socket.join(roomId);
+    io.to(roomId).emit("user:joined", socket.id);
+  });
 
   socket.off("setup", () => {
     console.log("user disconnected");
