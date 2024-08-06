@@ -70,7 +70,7 @@ exports.deleteExpertCallById = async (req, res) => {
 exports.updateCallStatus = async (req, res) => {
   try {
     const { status } = req.body;
-    if (!["Pending", "Completed", "Cancelled"].includes(status)) {
+    if (!["Pending", "Completed", "Cancelled", "Approved"].includes(status)) {
       return res.status(400).json({ error: "Invalid status" });
     }
 
@@ -84,6 +84,54 @@ exports.updateCallStatus = async (req, res) => {
     }
 
     res.status(200).json(expertCall);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+exports.getPendingCallsForExpert = async (req, res) => {
+  try {
+    const expertId = req.params.expertId;
+    // console.log(req.body);
+    const pendingCalls = await ExpertCall.find({
+      expert_id: expertId,
+      status: "Pending",
+    })
+      .populate("farmer_id", "name") // Assuming you want to populate farmer details
+      .populate("expert_id", "name"); // Assuming you want to populate expert details
+
+    res.status(200).json(pendingCalls);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+exports.getCallsForFarmer = async (req, res) => {
+  try {
+    const farmerId = req.params.farmerId;
+    const calls = await ExpertCall.find({
+      farmer_id: farmerId,
+      status: "Approved",
+    }).populate("expert_id", "name");
+    // .sort({ call_date: -1 });
+
+    // console.log(calls)
+    res.status(200).json(calls);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+exports.getCallsForExpert = async (req, res) => {
+  try {
+    const expertId = req.params.expertId;
+    const calls = await ExpertCall.find({
+      expert_id: expertId,
+      status: "Approved",
+    }).populate("farmer_id", "name");
+    // .sort({ call_date: -1 });
+
+    res.status(200).json(calls);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

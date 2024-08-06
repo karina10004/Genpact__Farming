@@ -6,11 +6,12 @@ Modal.setAppElement("#root");
 
 const ExpertList = () => {
   const [experts, setExperts] = useState([]);
+  const [loggedUser, setLoggedUser] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedExpert, setSelectedExpert] = useState(null);
-  const [callDate, setCallDate] = useState("");
+  // const [callDate, setCallDate] = useState("");
 
   useEffect(() => {
     const fetchExperts = async () => {
@@ -25,7 +26,8 @@ const ExpertList = () => {
         setLoading(false);
       }
     };
-
+    setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
+    console.log(loggedUser);
     fetchExperts();
   }, []);
 
@@ -37,15 +39,16 @@ const ExpertList = () => {
   const closeModal = () => {
     setModalIsOpen(false);
     setSelectedExpert(null);
-    setCallDate("");
+    // setCallDate("");
   };
 
   const handleScheduleCall = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/api/expertCalls", {
+      await axios.post("http://localhost:5000/api/call/", {
         expert_id: selectedExpert._id,
-        call_date: callDate,
+        // call_date: callDate,
+        farmer_id: loggedUser._id,
         status: "Pending",
       });
       closeModal();
@@ -76,15 +79,6 @@ const ExpertList = () => {
       >
         <h2>Schedule Call with {selectedExpert && selectedExpert.name}</h2>
         <form onSubmit={handleScheduleCall}>
-          <div>
-            <label>Call Date:</label>
-            <input
-              type="datetime-local"
-              value={callDate}
-              onChange={(e) => setCallDate(e.target.value)}
-              required
-            />
-          </div>
           <button type="submit">Schedule</button>
           <button type="button" onClick={closeModal}>
             Cancel

@@ -17,6 +17,7 @@ const ContextProvider = ({ children }) => {
   const [callAccepted, setCallAccepted] = useState(false);
   const [callEnded, setCallEnded] = useState(false);
   const [name, setName] = useState("");
+  const [toCall, setToCall] = useState(null);
   const myVideo = useRef();
   const userVideo = useRef();
   const connectionRef = useRef();
@@ -38,7 +39,15 @@ const ContextProvider = ({ children }) => {
       setCall({ isReceivedCall: true, from, name: callerName, signal });
       // answerCall()
     });
+    socket.on("user:joined", (userId) => {
+      console.log(userId);
+      setToCall(userId);
+    });
   }, []);
+
+  const setup = (roomId) => {
+    socket.emit("join:room", roomId);
+  };
 
   const answerCall = () => {
     setCallAccepted(true);
@@ -109,6 +118,8 @@ const ContextProvider = ({ children }) => {
         callUser,
         leaveCall,
         answerCall,
+        setup,
+        toCall,
       }}
     >
       {children}

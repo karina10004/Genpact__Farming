@@ -41,7 +41,7 @@ const io = socketIO(server, {
 });
 
 io.on("connection", (socket) => {
-  console.log("connected to socket.io");
+  console.log("connected to socket.io", socket.id);
   socket.on("setup", (userData) => {
     socket.join(userData._id);
     socket.emit("connected");
@@ -74,10 +74,17 @@ io.on("connection", (socket) => {
     console.log(from, name);
     io.to(userToCall).emit("callUser", { signal: signalData, from, name });
   });
+
   socket.on("answercall", (data) => {
     io.to(data.to).emit("callaccepted", data.signal);
   });
+
   socket.emit("me", socket.id);
+
+  socket.on("join:room", ({ roomId }) => {
+    socket.join(roomId);
+    io.to(roomId).emit("user:joined", socket.id);
+  });
 
   socket.off("setup", () => {
     console.log("user disconnected");

@@ -62,7 +62,7 @@ exports.loginExpert = async (req, res) => {
       expiresIn: "1h",
     });
 
-    res.json({ token });
+    res.json({ expert });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");

@@ -6,7 +6,7 @@ const expertCallSchema = new Schema(
     farmer_id: {
       type: mongoose.Schema.Types.ObjectId, // Assuming farmer_id references a farmer in another collection
       required: true,
-      ref: "Farmer", // Assuming you have a 'Farmer' model
+      ref: "User", // Assuming you have a 'Farmer' model
     },
     expert_id: {
       type: mongoose.Schema.Types.ObjectId, // Assuming expert_id references an expert in the experts collection
@@ -15,12 +15,12 @@ const expertCallSchema = new Schema(
     },
     call_date: {
       type: Date,
-      required: true,
+      // required: true,
     },
     status: {
       type: String,
       required: true,
-      enum: ["Pending", "Completed", "Cancelled"], // Example statuses
+      enum: ["Pending", "Completed", "Cancelled", "Approved"], // Example statuses
     },
   },
   { timestamps: true }

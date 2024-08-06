@@ -9,6 +9,9 @@ import { ContextProvider } from "./SocketContext";
 import ExpertLogin from "../src/components/Authentication/ExpertLogin";
 import ExpertRegsiter from "../src/components/Authentication/ExpertRegistration";
 import ExpertList from "./components/expertlist";
+import ExpertRequests from "./components/ExpertRequests";
+import ExpertCalls from "./components/ExpertCalls";
+import FarmerCalls from "./components/FarmerCalls";
 function App() {
   return (
     //<Router>
@@ -20,8 +23,11 @@ function App() {
       <Route path="/expertlogin" element={<ExpertLogin />} />
       <Route path="/expertregister" element={<ExpertRegsiter />} />
       <Route path="/experts" element={<ExpertList />} />
+      <Route path="/requests" element={<ExpertRequests />} />
+      <Route path="/farmer-calls" element={<FarmerCalls />} />
+      <Route path="/expert-calls" element={<ExpertCalls />} />
       <Route
-        path="/video"
+        path="/join-call/:roomId"
         element={
           <ContextProvider>
             {" "}
@@ -29,6 +35,7 @@ function App() {
           </ContextProvider>
         }
       />
+
       {/* </ContextProvider> */}
     </Routes>
     // </Router>
