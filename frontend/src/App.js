@@ -17,6 +17,9 @@ import WeatherPage from "./pages/WeatherPage/WeatherPage";
 import Blog from "./components/Blog/AddBlock";
 import BlogPosts from "./components/Blog/BlogPosts";
 import SingleBlog from "./components/Blog/BlogPost";
+import Home from "./components/home/Home";
+import Fertilizer from "./components/FertilizerRecommendation";
+import Crop from "./components/CropPredictionForm";
 function App() {
   return (
     //<Router>
@@ -35,6 +38,9 @@ function App() {
       <Route path="/expert-calls" element={<ExpertCalls />} />
       <Route path="/GS" element={<GS />} />
       <Route path="/Weather" element={<WeatherPage />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/fertilizer" element={<Fertilizer />} />
+      <Route path="/crop" element={<Crop />} />
       <Route
         path="/join-call/:roomId"
         element={
