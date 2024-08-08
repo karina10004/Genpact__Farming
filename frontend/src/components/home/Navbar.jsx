@@ -100,6 +100,14 @@ function Navbar() {
             >
               Expert
             </Link>
+            <Link
+              to="#"
+              _hover={{ textDecoration: "none", bg: "green.700" }}
+              p={2}
+              rounded={"md"}
+            >
+              Suggestions
+            </Link>
           </HStack>
         </HStack>
       </Flex>
