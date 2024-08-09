@@ -8,14 +8,17 @@ import {
   Select,
   VStack,
   Heading,
+  Text,
+  Link,
 } from "@chakra-ui/react";
 import { state_arr, s_a } from "../components/stateDistrictData";
 
-const CropPredictionForm = ({ setResult }) => {
+const CropPredictionForm = () => {
   const [state, setState] = useState("");
   const [district, setDistrict] = useState("");
   const [season, setSeason] = useState("");
   const [districts, setDistricts] = useState([]);
+  const [result, setResult] = useState("");
 
   const handleStateChange = (event) => {
     const selectedState = event.target.value;
@@ -47,6 +50,24 @@ const CropPredictionForm = ({ setResult }) => {
       console.error("Error fetching prediction:", error);
       setResult("Error fetching prediction");
     }
+  };
+
+  const renderResults = () => {
+    if (result) {
+      return result.split(",").map((item, index) => (
+        <Box key={index} display="flex" alignItems="center" mb={2}>
+          <Text flex={1}>{item.trim()}</Text>
+          <Link
+            href={`http://your-chatbot-url.com?message=Give me information of this '${item.trim()}' crop. Tell me about budget, seeds, nearby mandi, all. I am from ${district}.`}
+            color="blue.500"
+            ml={4}
+          >
+            Ask Chatbot
+          </Link>
+        </Box>
+      ));
+    }
+    return null;
   };
 
   return (
@@ -114,6 +135,13 @@ const CropPredictionForm = ({ setResult }) => {
             Predict
           </Button>
         </VStack>
+      </Box>
+
+      <Box mt={6}>
+        <Heading as="h3" size="md" mb={4}>
+          Prediction Results:
+        </Heading>
+        {renderResults()}
       </Box>
     </Box>
   );

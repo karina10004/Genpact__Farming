@@ -67,6 +67,7 @@ app.post("/api/predict", (req, res) => {
         return res.status(500).json({ error: "Error performing prediction" });
       }
       console.log("hello");
+      console.log(stdout);
       return res.json({ result: stdout });
     });
   } catch (error) {

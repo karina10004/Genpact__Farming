@@ -9,11 +9,11 @@ import {
   Select,
   VStack,
   Heading,
-  ChakraProvider,
   Text,
 } from "@chakra-ui/react";
 
-const FertilizerRecommendation = ({}) => {
+const FertilizerRecommendation = () => {
+  // Initializing state variables
   const [n, setN] = useState("");
   const [p, setP] = useState("");
   const [k, setK] = useState("");
@@ -22,7 +22,8 @@ const FertilizerRecommendation = ({}) => {
   const [soilMoisture, setSoilMoisture] = useState("");
   const [soil, setSoil] = useState("");
   const [crop, setCrop] = useState("");
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState(""); // Ensure this is defined properly
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -39,7 +40,7 @@ const FertilizerRecommendation = ({}) => {
           crop,
         }
       );
-      setResult(response.data.result);
+      setResult(response.data.result); // Updating the result state
     } catch (error) {
       console.error("Error fetching recommendation:", error);
       setResult("Error fetching recommendation");
@@ -70,7 +71,7 @@ const FertilizerRecommendation = ({}) => {
       >
         <VStack spacing={4} align="stretch">
           <FormControl isRequired>
-            <FormLabel>Nitrogen</FormLabel>
+            <FormLabel>Nitrogen (N)</FormLabel>
             <Input
               type="number"
               value={n}
@@ -78,7 +79,7 @@ const FertilizerRecommendation = ({}) => {
             />
           </FormControl>
           <FormControl isRequired>
-            <FormLabel>Phosphorus</FormLabel>
+            <FormLabel>Phosphorus (P)</FormLabel>
             <Input
               type="number"
               value={p}
@@ -86,7 +87,7 @@ const FertilizerRecommendation = ({}) => {
             />
           </FormControl>
           <FormControl isRequired>
-            <FormLabel>Potassium</FormLabel>
+            <FormLabel>Potassium (K)</FormLabel>
             <Input
               type="number"
               value={k}
@@ -94,7 +95,7 @@ const FertilizerRecommendation = ({}) => {
             />
           </FormControl>
           <FormControl isRequired>
-            <FormLabel>Temperature</FormLabel>
+            <FormLabel>Temperature (°C)</FormLabel>
             <Input
               type="number"
               value={t}
@@ -102,7 +103,7 @@ const FertilizerRecommendation = ({}) => {
             />
           </FormControl>
           <FormControl isRequired>
-            <FormLabel>Humidity</FormLabel>
+            <FormLabel>Humidity (%)</FormLabel>
             <Input
               type="number"
               value={h}
@@ -110,7 +111,7 @@ const FertilizerRecommendation = ({}) => {
             />
           </FormControl>
           <FormControl isRequired>
-            <FormLabel>Soil Moisture</FormLabel>
+            <FormLabel>Soil Moisture (%)</FormLabel>
             <Input
               type="number"
               value={soilMoisture}
@@ -150,7 +151,22 @@ const FertilizerRecommendation = ({}) => {
           </Button>
         </VStack>
       </Box>
+      {/* Displaying the result */}
+      {result && (
+        <Box mt={4} p={4} borderWidth={1} borderRadius="lg" bg="green.50">
+          <Text fontSize="lg">Recommended Fertilizer: {result}</Text>
+        </Box>
+      )}
+      {/* Displaying error if there's an issue */}
+      {result === "Error fetching recommendation" && (
+        <Box mt={4} p={4} borderWidth={1} borderRadius="lg" bg="red.50">
+          <Text fontSize="lg" color="red.500">
+            There was an error processing your request. Please try again.
+          </Text>
+        </Box>
+      )}
     </Box>
   );
 };
+
 export default FertilizerRecommendation;
