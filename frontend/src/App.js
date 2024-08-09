@@ -20,12 +20,14 @@ import SingleBlog from "./components/Blog/BlogPost";
 import Home from "./components/home/Home";
 import Fertilizer from "./components/FertilizerRecommendation";
 import Crop from "./components/CropPredictionForm";
+import AiChatbot from "./pages/Chatbot/Chatbot.jsx";
 function App() {
   return (
     //<Router>
     <Routes>
       <Route path="/" element={<Homepage />} />
       <Route path="/chats" element={<Chatpage />} />
+      <Route path="/aiChatbot" element={<AiChatbot />} />
       {/* <ContextProvider> */}
       <Route path="/news" element={<News />} />
       <Route path="/expertlogin" element={<ExpertLogin />} />
