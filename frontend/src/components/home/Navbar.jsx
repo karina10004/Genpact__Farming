@@ -69,7 +69,7 @@ function Navbar() {
               </MenuList>
             </Menu>
             <Link
-              to="#"
+              to="/chats"
               _hover={{ textDecoration: "none", bg: "green.700" }}
               p={2}
               rounded={"md"}
@@ -85,7 +85,7 @@ function Navbar() {
               News
             </Link>
             <Link
-              to="#"
+              to="/BlogPost"
               _hover={{ textDecoration: "none", bg: "green.700" }}
               p={2}
               rounded={"md"}
@@ -93,7 +93,7 @@ function Navbar() {
               Blogs
             </Link>
             <Link
-              to="/expert-call"
+              to="/list"
               _hover={{ textDecoration: "none", bg: "green.700" }}
               p={2}
               rounded={"md"}
@@ -101,7 +101,7 @@ function Navbar() {
               Expert
             </Link>
             <Link
-              to="#"
+              to="/aiChatbot"
               _hover={{ textDecoration: "none", bg: "green.700" }}
               p={2}
               rounded={"md"}

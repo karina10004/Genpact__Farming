@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Box, Text, VStack, Button } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import {
+  Box,
+  Text,
+  VStack,
+  Button,
+  Heading,
+  Spinner,
+  Center,
+} from "@chakra-ui/react";
+import { Link, useNavigate } from "react-router-dom";
 
 const BlogPosts = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -23,23 +32,54 @@ const BlogPosts = () => {
     fetchPosts();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading)
+    return (
+      <Center h="100vh">
+        <Spinner size="xl" />
+      </Center>
+    );
+
+  if (error)
+    return (
+      <Center h="100vh">
+        <Text color="red.500" fontSize="lg">
+          Error: {error}
+        </Text>
+      </Center>
+    );
 
   return (
-    <VStack spacing={4} align="stretch">
-      {posts.map((post) => (
-        <Box key={post._id} p={4} borderWidth="1px" borderRadius="lg">
-          <Text fontSize="2xl" mb={2}>
-            {post.title}
-          </Text>
-          <Text mb={4}>{post.content.substring(0, 100)}...</Text>
-          <Link to={`/blog/${post._id}`}>
-            <Button colorScheme="teal">Read More</Button>
-          </Link>
-        </Box>
-      ))}
-    </VStack>
+    <Box maxW="800px" mx="auto" p={8}>
+      <Heading mb={8} textAlign="center">
+        Blog Posts
+      </Heading>
+      <VStack spacing={6} align="stretch">
+        {posts.map((post) => (
+          <Box
+            key={post._id}
+            p={6}
+            borderWidth="1px"
+            borderRadius="lg"
+            boxShadow="md"
+            transition="transform 0.2s"
+            _hover={{ transform: "scale(1.02)", boxShadow: "lg" }}
+          >
+            <Text fontSize="2xl" fontWeight="bold" mb={4}>
+              {post.title}
+            </Text>
+            <Text mb={4}>{post.content.substring(0, 100)}...</Text>
+            <Link to={`/blog/${post._id}`}>
+              <Button colorScheme="green">Read More</Button>
+            </Link>
+          </Box>
+        ))}
+      </VStack>
+      <Center mt={8}>
+        <Button colorScheme="green" onClick={() => navigate("/Blog")}>
+          Add Blog
+        </Button>
+      </Center>
+    </Box>
   );
 };
 

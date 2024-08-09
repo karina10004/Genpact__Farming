@@ -53,7 +53,7 @@ const Login = () => {
       //   setUser(data);
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
-      navigate("/chats");
+      navigate("/Home");
     } catch (error) {
       toast({
         title: "Error Occured!",
@@ -95,24 +95,13 @@ const Login = () => {
         </InputGroup>
       </FormControl>
       <Button
-        colorScheme="blue"
+        colorScheme="green"
         width="100%"
         style={{ marginTop: 15 }}
         onClick={submitHandler}
         isLoading={loading}
       >
         Login
-      </Button>
-      <Button
-        variant="solid"
-        colorScheme="red"
-        width="100%"
-        onClick={() => {
-          setEmail("guest@example.com");
-          setPassword("123456");
-        }}
-      >
-        Get Guest User Credentials
       </Button>
     </VStack>
   );

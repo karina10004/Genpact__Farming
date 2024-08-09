@@ -16,12 +16,12 @@
   
   .table th, .table td {
     padding: 15px;
-    border: 2px solid #007bff; /* Visible border color */
+    border: 2px solid #18660faf; /* Visible border color */
     background-color: #fff;
   }
   
   .table th {
-    background-color: #007bff;
+    background-color: #18660faf;
     color: white;
     font-weight: bold;
     position: sticky;
@@ -52,8 +52,8 @@
   .pagination button {
     margin: 0 5px;
     padding: 0.5em 1em;
-    border: 2px solid #007bff; /* Border for pagination buttons */
-    background-color: #007bff;
+    border: 2px solid #18660faf; /* Border for pagination buttons */
+    background-color: #18660faf;
     color: white;
     cursor: pointer;
     border-radius: 5px;
@@ -61,11 +61,11 @@
   }
   
   .pagination button:hover {
-    background-color: #0056b3;
+    background-color: #18660faf;
   }
   
   .pagination .active {
-    background-color: #0056b3;
+    background-color: #18660faf;
     cursor: default;
   }
   
@@ -75,7 +75,7 @@
   }
   
   .card-header {
-    background-color: #007bff;
+    background-color: #18660faf;
     color: white;
   }
   

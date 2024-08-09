@@ -1,6 +1,16 @@
-// src/components/FarmerCalls.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  List,
+  ListItem,
+  Spinner,
+  Text,
+  useToast,
+} from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
 const FarmerCalls = () => {
@@ -9,6 +19,7 @@ const FarmerCalls = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const toast = useToast();
 
   const user = JSON.parse(localStorage.getItem("userInfo"));
 
@@ -34,25 +45,38 @@ const FarmerCalls = () => {
     navigate(`/join-call/${id}`);
   };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading) return <Spinner size="xl" />;
+  if (error) return <Text color="red.500">Error: {error}</Text>;
 
   return (
-    <div>
-      <h1>Scheduled Calls for Farmer</h1>
-      <ul>
+    <Box p={8}>
+      <Heading mb={6}>Scheduled Calls for Farmer</Heading>
+      <List spacing={4}>
         {calls.map((call) => (
-          <li key={call._id}>
-            <div>
-              <p>Expert: {call.expert_id.name}</p>
-              <p>Call Date: {new Date(call.call_date).toLocaleString()}</p>
-              <p>Status: {call.status}</p>
-              <button onClick={() => handleCall(call._id)}>Join Call</button>
-            </div>
-          </li>
+          <ListItem
+            key={call._id}
+            p={4}
+            border="1px solid"
+            borderColor="gray.200"
+            borderRadius="md"
+            boxShadow="md"
+          >
+            <Flex justify="space-between" align="center">
+              <Box>
+                <Text fontWeight="bold">Expert: {call.expert_id.name}</Text>
+                <Text>
+                  Call Date: {new Date(call.call_date).toLocaleString()}
+                </Text>
+                <Text>Status: {call.status}</Text>
+              </Box>
+              <Button colorScheme="teal" onClick={() => handleCall(call._id)}>
+                Join Call
+              </Button>
+            </Flex>
+          </ListItem>
         ))}
-      </ul>
-    </div>
+      </List>
+    </Box>
   );
 };
 

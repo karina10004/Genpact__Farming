@@ -1,5 +1,6 @@
 // controllers/blogPostController.js
 const BlogPost = require("../models/BlogPost");
+const mongoose = require("mongoose");
 
 // Create a new blog post
 exports.createPost = async (req, res) => {
@@ -66,6 +67,92 @@ exports.deletePost = async (req, res) => {
     }
     await post.remove();
     res.status(200).json({ message: "Post deleted" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.addComment = async (req, res) => {
+  const { postId } = req.params;
+  const { author, content } = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(postId)) {
+    return res.status(400).json({ message: "Invalid post ID" });
+  }
+
+  try {
+    const blogPost = await BlogPost.findById(postId);
+    if (!blogPost) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    const newComment = {
+      author,
+      content,
+      createdAt: new Date(),
+    };
+
+    blogPost.comments.push(newComment);
+    await blogPost.save();
+
+    res.status(201).json(blogPost);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Delete a comment from a blog post
+exports.deleteComment = async (req, res) => {
+  const { postId, commentId } = req.params;
+
+  if (
+    !mongoose.Types.ObjectId.isValid(postId) ||
+    !mongoose.Types.ObjectId.isValid(commentId)
+  ) {
+    return res.status(400).json({ message: "Invalid post ID or comment ID" });
+  }
+
+  try {
+    const blogPost = await BlogPost.findById(postId);
+    if (!blogPost) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    const commentIndex = blogPost.comments.findIndex(
+      (comment) => comment._id.toString() === commentId
+    );
+
+    if (commentIndex === -1) {
+      return res.status(404).json({ message: "Comment not found" });
+    }
+
+    blogPost.comments.splice(commentIndex, 1);
+    await blogPost.save();
+
+    res.status(200).json(blogPost);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Get all comments for a blog post
+exports.getComments = async (req, res) => {
+  const { postId } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(postId)) {
+    return res.status(400).json({ message: "Invalid post ID" });
+  }
+
+  try {
+    const blogPost = await BlogPost.findById(postId).populate(
+      "comments.author",
+      "name"
+    );
+    if (!blogPost) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    res.status(200).json(blogPost.comments);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
