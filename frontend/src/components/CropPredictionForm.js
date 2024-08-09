@@ -57,11 +57,7 @@ const CropPredictionForm = () => {
       return result.split(",").map((item, index) => (
         <Box key={index} display="flex" alignItems="center" mb={2}>
           <Text flex={1}>{item.trim()}</Text>
-          <Link
-            href={`http://your-chatbot-url.com?message=Give me information of this '${item.trim()}' crop. Tell me about budget, seeds, nearby mandi, all. I am from ${district}.`}
-            color="blue.500"
-            ml={4}
-          >
+          <Link to="/aiChatbot" color="blue.500" ml={4}>
             Ask Chatbot
           </Link>
         </Box>

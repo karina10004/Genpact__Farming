@@ -1,7 +1,7 @@
 import { Button } from "@chakra-ui/button";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
-import { VStack } from "@chakra-ui/layout";
+import { VStack, Box, Heading, Text } from "@chakra-ui/layout";
 import { useState } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
@@ -69,42 +69,63 @@ const ExpertLogin = () => {
   };
 
   return (
-    <VStack spacing="10px">
-      <FormControl id="email" isRequired>
-        <FormLabel>Email Address</FormLabel>
-        <Input
-          value={email}
-          type="email"
-          placeholder="Enter Your Email Address"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </FormControl>
-      <FormControl id="password" isRequired>
-        <FormLabel>Password</FormLabel>
-        <InputGroup size="md">
-          <Input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type={show ? "text" : "password"}
-            placeholder="Enter Password"
-          />
-          <InputRightElement width="4.5rem">
-            <Button h="1.75rem" size="sm" onClick={handleClick}>
-              {show ? "Hide" : "Show"}
-            </Button>
-          </InputRightElement>
-        </InputGroup>
-      </FormControl>
-      <Button
-        colorScheme="blue"
-        width="100%"
-        style={{ marginTop: 15 }}
-        onClick={submitHandler}
-        isLoading={loading}
-      >
-        Login
-      </Button>
-    </VStack>
+    <Box
+      bg="gray.50"
+      minH="100vh"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Box bg="white" p={8} rounded="lg" boxShadow="lg" maxW="md" w="full">
+        <Heading as="h1" size="xl" textAlign="center" mb={6} color="green.700">
+          Expert Login
+        </Heading>
+        <Text mb={6} color="gray.600" textAlign="center">
+          Please enter your credentials to access the dashboard.
+        </Text>
+        <VStack spacing="10px">
+          <FormControl id="email" isRequired>
+            <FormLabel>Email Address</FormLabel>
+            <Input
+              value={email}
+              type="email"
+              placeholder="Enter Your Email Address"
+              onChange={(e) => setEmail(e.target.value)}
+              focusBorderColor="green.500"
+              bg="gray.100"
+            />
+          </FormControl>
+          <FormControl id="password" isRequired>
+            <FormLabel>Password</FormLabel>
+            <InputGroup size="md">
+              <Input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                type={show ? "text" : "password"}
+                placeholder="Enter Password"
+                focusBorderColor="green.500"
+                bg="gray.100"
+              />
+              <InputRightElement width="4.5rem">
+                <Button h="1.75rem" size="sm" onClick={handleClick}>
+                  {show ? "Hide" : "Show"}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
+          </FormControl>
+          <Button
+            colorScheme="green"
+            width="100%"
+            style={{ marginTop: 15 }}
+            onClick={submitHandler}
+            isLoading={loading}
+            variant="solid"
+          >
+            Login
+          </Button>
+        </VStack>
+      </Box>
+    </Box>
   );
 };
 

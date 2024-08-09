@@ -1,8 +1,26 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Modal from "react-modal";
-
-Modal.setAppElement("#root");
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  List,
+  ListItem,
+  Spinner,
+  Text,
+  useToast,
+} from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+} from "@chakra-ui/react";
 
 const ExpertList = () => {
   const [experts, setExperts] = useState([]);
@@ -11,7 +29,8 @@ const ExpertList = () => {
   const [error, setError] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedExpert, setSelectedExpert] = useState(null);
-  // const [callDate, setCallDate] = useState("");
+  const navigate = useNavigate();
+  const toast = useToast();
 
   useEffect(() => {
     const fetchExperts = async () => {
@@ -26,8 +45,10 @@ const ExpertList = () => {
         setLoading(false);
       }
     };
-    setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
-    console.log(loggedUser);
+
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    setLoggedUser(userInfo);
+
     fetchExperts();
   }, []);
 
@@ -39,7 +60,6 @@ const ExpertList = () => {
   const closeModal = () => {
     setModalIsOpen(false);
     setSelectedExpert(null);
-    // setCallDate("");
   };
 
   const handleScheduleCall = async (e) => {
@@ -47,45 +67,91 @@ const ExpertList = () => {
     try {
       await axios.post("http://localhost:5000/api/call/", {
         expert_id: selectedExpert._id,
-        // call_date: callDate,
         farmer_id: loggedUser._id,
         status: "Pending",
+      });
+      toast({
+        title: "Call Scheduled",
+        description: `Your call with ${selectedExpert.name} has been scheduled.`,
+        status: "success",
+        duration: 5000,
+        isClosable: true,
       });
       closeModal();
     } catch (error) {
       console.error(error);
+      toast({
+        title: "Error",
+        description: "Failed to schedule the call.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
     }
   };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading) return <Spinner size="xl" />;
+  if (error) return <Text color="red.500">Error: {error}</Text>;
 
   return (
-    <div>
-      <h1>Experts List</h1>
-      <ul>
+    <Box p={8}>
+      <Heading mb={6}>Experts List</Heading>
+      <List spacing={4}>
         {experts.map((expert) => (
-          <li key={expert._id}>
-            {expert.name} - {expert.specialization}
-            <button onClick={() => openModal(expert)}>Schedule Call</button>
-          </li>
+          <ListItem
+            key={expert._id}
+            p={4}
+            border="1px solid"
+            borderColor="gray.200"
+            borderRadius="md"
+            boxShadow="md"
+          >
+            <Flex justify="space-between" align="center">
+              <Box>
+                <Text fontWeight="bold">{expert.name}</Text>
+                <Text>{expert.specialization}</Text>
+              </Box>
+              <Button colorScheme="teal" onClick={() => openModal(expert)}>
+                Schedule Call
+              </Button>
+            </Flex>
+          </ListItem>
         ))}
-      </ul>
+      </List>
 
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Schedule Call"
-      >
-        <h2>Schedule Call with {selectedExpert && selectedExpert.name}</h2>
-        <form onSubmit={handleScheduleCall}>
-          <button type="submit">Schedule</button>
-          <button type="button" onClick={closeModal}>
-            Cancel
-          </button>
-        </form>
+      <Modal isOpen={modalIsOpen} onClose={closeModal}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Schedule Call</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Text mb={4}>
+              Are you sure you want to schedule a call with{" "}
+              <Text as="span" fontWeight="bold">
+                {selectedExpert && selectedExpert.name}
+              </Text>
+              ?
+            </Text>
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={handleScheduleCall}>
+              Schedule
+            </Button>
+            <Button variant="ghost" onClick={closeModal}>
+              Cancel
+            </Button>
+          </ModalFooter>
+        </ModalContent>
       </Modal>
-    </div>
+
+      <Button
+        mt={6}
+        colorScheme="blue"
+        onClick={() => navigate("/farmer-calls")}
+      >
+        Go to scheduled calls
+      </Button>
+    </Box>
   );
 };
 

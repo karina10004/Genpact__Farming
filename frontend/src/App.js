@@ -21,6 +21,7 @@ import Home from "./components/home/Home";
 import Fertilizer from "./components/FertilizerRecommendation";
 import Crop from "./components/CropPredictionForm";
 import AiChatbot from "./pages/Chatbot/Chatbot.jsx";
+import ExpertDashboard from "./components/ExpertDashboard.jsx";
 function App() {
   return (
     //<Router>
@@ -28,10 +29,12 @@ function App() {
       <Route path="/" element={<Homepage />} />
       <Route path="/chats" element={<Chatpage />} />
       <Route path="/aiChatbot" element={<AiChatbot />} />
+      <Route path="/expert-dashboard" element={<ExpertDashboard />} />
       {/* <ContextProvider> */}
       <Route path="/news" element={<News />} />
       <Route path="/expertlogin" element={<ExpertLogin />} />
       <Route path="/expertregister" element={<ExpertRegsiter />} />
+      <Route path="/list" element={<ExpertList />} />
       <Route path="/Blog" element={<Blog />} />
       <Route path="/blog/:id" element={<SingleBlog />} />
       <Route path="/BlogPost" element={<BlogPosts />} />

@@ -12,6 +12,7 @@ const expertRoute = require("./routes/expert");
 const expertcallRoute = require("./routes/expertcall");
 const socketIO = require("socket.io");
 const blogRoute = require("./routes/blogPosts");
+const commentRoute = require("./routes/comment");
 // const { notFound, errorHandler } = require("./middleware/errorMiddle");
 const app = express();
 
@@ -29,6 +30,7 @@ app.use("/api/message", messageRoute);
 app.use("/api/expert", expertRoute);
 app.use("/api/call", expertcallRoute);
 app.use("/api/blog", blogRoute);
+app.use("/api/blog", commentRoute);
 // app.use(notFound);
 // app.use(errorHandler);
 app.use(express.static(path.join(__dirname, "build")));
