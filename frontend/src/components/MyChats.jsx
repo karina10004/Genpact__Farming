@@ -70,7 +70,7 @@ const MyChats = ({ fetchAgain }) => {
         justifyContent="space-between"
         alignItems="center"
       >
-        My Chats
+        My Chats{" "}
         <GroupChatModal>
           <Button
             d="flex"
