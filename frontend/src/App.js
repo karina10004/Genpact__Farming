@@ -22,6 +22,7 @@ import Fertilizer from "./components/FertilizerRecommendation";
 import Crop from "./components/CropPredictionForm";
 import AiChatbot from "./pages/Chatbot/Chatbot.jsx";
 import ExpertDashboard from "./components/ExpertDashboard.jsx";
+import WeatherForecast from "./pages/WeatherPage/WeatherForecast.jsx";
 function App() {
   return (
     //<Router>
@@ -42,7 +43,7 @@ function App() {
       <Route path="/farmer-calls" element={<FarmerCalls />} />
       <Route path="/expert-calls" element={<ExpertCalls />} />
       <Route path="/GS" element={<GS />} />
-      <Route path="/Weather" element={<WeatherPage />} />
+      <Route path="/Weather" element={<WeatherForecast />} />
       <Route path="/home" element={<Home />} />
       <Route path="/fertilizer" element={<Fertilizer />} />
       <Route path="/crop" element={<Crop />} />
