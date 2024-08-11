@@ -63,7 +63,7 @@ const ExpertSignup = () => {
       };
 
       const response = await axios.post(
-        "http://localhost:5000/api/expert/register",
+        "https://genpact-farming.onrender.com/api/expert/register",
         {
           name,
           specialization,

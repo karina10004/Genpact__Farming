@@ -52,7 +52,7 @@ const Signup = () => {
         },
       };
       const response = await axios.post(
-        "http://localhost:5000/api/user",
+        "https://genpact-farming.onrender.com/api/user",
         {
           name,
           email,

@@ -40,11 +40,14 @@ const CropPredictionForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/api/predict", {
-        state,
-        district,
-        season,
-      });
+      const response = await axios.post(
+        "https://genpact-farming.onrender.com/api/predict",
+        {
+          state,
+          district,
+          season,
+        }
+      );
       setResult(response.data.result);
     } catch (error) {
       console.error("Error fetching prediction:", error);

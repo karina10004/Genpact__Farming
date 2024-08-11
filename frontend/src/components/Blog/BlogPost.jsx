@@ -30,13 +30,13 @@ const BlogPost = () => {
     const fetchPost = async () => {
       try {
         const postResponse = await axios.get(
-          `http://localhost:5000/api/blog/${id}`
+          `https://genpact-farming.onrender.com/api/blog/${id}`
         );
         setPost(postResponse.data);
         setLoading(false);
 
         const commentsResponse = await axios.get(
-          `http://localhost:5000/api/blog/${id}/comments`
+          `https://genpact-farming.onrender.com/api/blog/${id}/comments`
         );
         setComments(commentsResponse.data);
       } catch (err) {
@@ -61,7 +61,7 @@ const BlogPost = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/blog/${id}/comments`,
+        `https://genpact-farming.onrender.com/api/blog/${id}/comments`,
         {
           author, // You would pass the actual author ID here if using authentication
           content: newComment,
@@ -90,7 +90,7 @@ const BlogPost = () => {
   const handleDeleteComment = async (commentId) => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/blog/${id}/comments/${commentId}`
+        `https://genpact-farming.onrender.com/api/blog/${id}/comments/${commentId}`
       );
       setComments(comments.filter((comment) => comment._id !== commentId));
       toast({

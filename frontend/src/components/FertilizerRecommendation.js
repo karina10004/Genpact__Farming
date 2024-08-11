@@ -28,7 +28,7 @@ const FertilizerRecommendation = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/fertilizer-recommendation",
+        "https://genpact-farming.onrender.com/api/fertilizer-recommendation",
         {
           n,
           p,
