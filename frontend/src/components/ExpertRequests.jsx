@@ -13,7 +13,7 @@ const ExpertRequests = () => {
     const fetchRequests = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/call/pending/${expert._id}`
+          `https://genpact-farming.onrender.com/api/call/pending/${expert._id}`
         );
         setRequests(response.data);
         setLoading(false);
@@ -28,9 +28,12 @@ const ExpertRequests = () => {
 
   const handleUpdateStatus = async (id, status) => {
     try {
-      await axios.patch(`http://localhost:5000/api/call/${id}/status`, {
-        status,
-      });
+      await axios.patch(
+        `https://genpact-farming.onrender.com/api/call/${id}/status`,
+        {
+          status,
+        }
+      );
       setRequests(
         requests.map((req) => (req._id === id ? { ...req, status } : req))
       );

@@ -36,7 +36,7 @@ const ExpertList = () => {
     const fetchExperts = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/expert/all"
+          "https://genpact-farming.onrender.com/api/expert/all"
         );
         setExperts(response.data);
         setLoading(false);
@@ -65,7 +65,7 @@ const ExpertList = () => {
   const handleScheduleCall = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/call/", {
+      await axios.post("https://genpact-farming.onrender.com/api/call/", {
         expert_id: selectedExpert._id,
         farmer_id: loggedUser._id,
         status: "Pending",

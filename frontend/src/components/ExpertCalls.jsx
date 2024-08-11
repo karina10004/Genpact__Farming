@@ -14,7 +14,7 @@ const ExpertCalls = () => {
     const fetchCalls = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/call/expert/${expert._id}`
+          `https://genpact-farming.onrender.com/api/call/expert/${expert._id}`
         );
         setCalls(response.data);
         setLoading(false);
