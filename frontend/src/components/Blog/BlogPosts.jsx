@@ -10,6 +10,7 @@ import {
   Center,
 } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
+import Navbar from "../home/Navbar";
 
 const BlogPosts = () => {
   const [posts, setPosts] = useState([]);
@@ -51,6 +52,7 @@ const BlogPosts = () => {
     );
 
   return (
+    <div><Navbar/>
     <Box maxW="800px" mx="auto" p={8}>
       <Heading mb={8} textAlign="center">
         Blog Posts
@@ -82,6 +84,7 @@ const BlogPosts = () => {
         </Button>
       </Center>
     </Box>
+    </div>
   );
 };
 

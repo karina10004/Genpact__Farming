@@ -21,6 +21,7 @@ import {
   ModalBody,
   ModalCloseButton,
 } from "@chakra-ui/react";
+import Navbar from "./home/Navbar";
 
 const ExpertList = () => {
   const [experts, setExperts] = useState([]);
@@ -94,6 +95,7 @@ const ExpertList = () => {
   if (error) return <Text color="red.500">Error: {error}</Text>;
 
   return (
+    <div><Navbar/>
     <Box p={8}>
       <Heading mb={6}>Experts List</Heading>
       <List spacing={4}>
@@ -152,6 +154,7 @@ const ExpertList = () => {
         Go to scheduled calls
       </Button>
     </Box>
+    </div>
   );
 };
 

@@ -20,6 +20,7 @@ import sendBtn from "./assets/assets/send.svg";
 import userIcon from "./assets/assets/user-icon.png";
 import gptImgLogo from "./assets/assets/assistant-svgrepo-com.svg";
 import { sendMsgToOpenAi } from "./openai";
+import Navbar from "../../components/home/Navbar";
 
 function Chatbot() {
   const navigate = useNavigate("/Home");
@@ -56,7 +57,8 @@ function Chatbot() {
   };
 
   return (
-    <Flex height="100vh" backgroundColor="gray.100">
+    <div><Navbar/>
+    <Flex height="92vh" backgroundColor="gray.100">
       {/* Sidebar */}
       <Box
         width={{ base: "60px", md: "250px" }}
@@ -204,6 +206,7 @@ function Chatbot() {
         </Box>
       </Box>
     </Flex>
+    </div>
   );
 }
 
