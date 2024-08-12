@@ -1,7 +1,7 @@
 
 
 import React from "react";
-import { Box, Flex, Text, Heading, VStack } from "@chakra-ui/react";
+import { Box, Text, Heading, VStack } from "@chakra-ui/react";
 import Navbar from "./Navbar";
 import Weather from "./Weather";
 import Slider from "react-slick"; 
@@ -16,8 +16,10 @@ function HomePage() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 2500,
     fade: true,
+    pauseOnHover: false,
+    arrows: false,
   };
 
   const images = [
