@@ -11,6 +11,7 @@ import {
   Heading,
   Text,
 } from "@chakra-ui/react";
+import Navbar from "./home/Navbar";
 
 const FertilizerRecommendation = () => {
   // Initializing state variables
@@ -48,8 +49,11 @@ const FertilizerRecommendation = () => {
   };
 
   return (
+    <div>
+      <Navbar/>
     <Box
       maxW="md"
+      margin='20px'
       mx="auto"
       p={4}
       borderWidth={1}
@@ -166,6 +170,7 @@ const FertilizerRecommendation = () => {
         </Box>
       )}
     </Box>
+    </div>
   );
 };
 

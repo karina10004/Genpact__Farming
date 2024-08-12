@@ -19,7 +19,7 @@ const Homepage = () => {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("userInfo"));
 
-    if (!user) navigate("/chats");
+    // if (!user) navigate("/chats");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigate]);
   return (

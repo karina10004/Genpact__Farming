@@ -12,6 +12,7 @@ import {
   SimpleGrid,
 } from "@chakra-ui/react";
 import axios from "axios";
+import Navbar from "../../components/home/Navbar";
 
 const WeatherForecast = () => {
   const [city, setCity] = useState("");
@@ -25,7 +26,7 @@ const WeatherForecast = () => {
     setLoading(true);
     setError(null);
     try {
-      const apiKey = "cb26ceb80b5b403ebf184810240908"; // Replace with your WeatherAPI key
+      const apiKey = "cb26ceb80b5b403ebf184810240908";
       const response = await axios.get(
         `http://api.weatherapi.com/v1/forecast.json`,
         {
@@ -53,7 +54,10 @@ const WeatherForecast = () => {
   };
 
   return (
+    <div>
+      <Navbar/>
     <Box
+    margin='30px'
       p={6}
       borderWidth="1px"
       borderRadius="lg"
@@ -135,6 +139,7 @@ const WeatherForecast = () => {
         )}
       </VStack>
     </Box>
+    </div>
   );
 };
 

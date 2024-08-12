@@ -12,6 +12,7 @@ import {
   Link,
 } from "@chakra-ui/react";
 import { state_arr, s_a } from "../components/stateDistrictData";
+import Navbar from "./home/Navbar";
 
 const CropPredictionForm = () => {
   const [state, setState] = useState("");
@@ -70,8 +71,11 @@ const CropPredictionForm = () => {
   };
 
   return (
+    <div>
+      <Navbar/>
     <Box
       maxW="md"
+      margin='20px'
       mx="auto"
       p={6}
       borderWidth={1}
@@ -143,6 +147,7 @@ const CropPredictionForm = () => {
         {renderResults()}
       </Box>
     </Box>
+    </div>
   );
 };
 

@@ -32,6 +32,7 @@ import ProfileModal from "./ProfileModal";
 import { getSender } from "../../config/ChatLogics";
 import UserListItem from "../userAvatar/UserListItem";
 import { ChatState } from "../../context/ChatProvider";
+import Navbar from "../home/Navbar";
 
 const SideDrawer = () => {
   const [search, setSearch] = useState("");
@@ -132,7 +133,8 @@ const SideDrawer = () => {
   };
 
   return (
-    <>
+    <div>
+      <Navbar/>
       <Box
         d="flex"
         justifyContent="space-between"
@@ -241,7 +243,7 @@ const SideDrawer = () => {
           </DrawerBody>
         </DrawerContent>
       </Drawer>
-    </>
+    </div>
   );
 };
 

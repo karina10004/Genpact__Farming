@@ -5,24 +5,27 @@ import nmsaImage from '../../Images/National-Mission-For-Sustainable-Agriculture
 import pmksyImage from '../../Images/PMKSY.jpg';
 import pmfbyImage from '../../Images/PMFBY-8-2-2021.jpg';
 import './GovernmentScheme.css'
+import Navbar from '../../components/home/Navbar';
 
 const GovernmentSchemes = () => {
     return (
         <div>
+            <Navbar/>
             {/* Hero Section */}
-            <div className="header">
+            {/* <div className="header">
                 <h1>Government Schemes</h1>
-            </div>
+            </div> */}
             {/* Blog Section */}
             <div>
                 <div className='Container'>
                     {/* Blog Detail Start */}
                     <div className="leftcontainer">
                         <h1>National Mission for Sustainable Agriculture (NMSA)</h1>
-                        <div>
-                            <div className='Imagesection'>
+                        <div className='Imagesection'>
                                 <img className="img" src={nmsaImage} alt="National Mission for Sustainable Agriculture" />
                             </div>
+                        <div className='contain'>
+                            
                             <div className='detailsection'>
                                 <div className='details'>
                                     <p>
@@ -54,8 +57,11 @@ const GovernmentSchemes = () => {
                         </div>
 
                         <h1>Pradhan Mantri Krishi Sinchai Yojana (PMKSY)</h1>
-                        <div>
+                        <div className='Imagesection'>
                             <img className="img" src={pmksyImage} alt="Pradhan Mantri Krishi Sinchai Yojana" />
+                        </div>
+                        <div className='contain'>
+                        
                             <p><strong>“Har Khet ko Pani – More crop per drop”</strong></p>
                             <p>
                                 The <a href="https://pmksy.gov.in/" target="_blank" rel="noopener noreferrer" style={{ color: '#333399' }}>
@@ -72,21 +78,24 @@ const GovernmentSchemes = () => {
                         </div>
 
                         <h1 >Pradhan Mantri Fasal Bima Yojana (PMFBY) - Crop Insurance Scheme</h1>
-                        <div className="col">
-                            <img className="img" src={pmfbyImage} alt="Pradhan Mantri Fasal Bima Yojana" />
+                        <div className="Imagesection">
+                                <img className="img" src={pmfbyImage} alt="Pradhan Mantri Fasal Bima Yojana" />
+                            </div>
+                        <div className='contain'>
+                            
+                            <p>
+                                <a href="https://pmfby.gov.in/" target="_blank" rel="noopener noreferrer" style={{ color: '#333399' }}>
+                                    Pradhan Mantri Fasal Bima Yojana (PMFBY)
+                                </a> is a Government-sponsored crop insurance scheme that integrates multiple stakeholders on a single platform.
+                            </p>
+                            <p>Objectives:</p>
+                            <ol>
+                                <li>Provide insurance coverage and financial support to farmers in case crops get damaged due to natural calamities, pests & diseases.</li>
+                                <li>Stabilize the income of farmers to ensure a steady career and business growth.</li>
+                                <li>Encourage farmers to adopt innovative and modern agricultural practices.</li>
+                                <li>Ensure positive cash and credit flow in the agriculture sector.</li>
+                            </ol>
                         </div>
-                        <p>
-                            <a href="https://pmfby.gov.in/" target="_blank" rel="noopener noreferrer" style={{ color: '#333399' }}>
-                                Pradhan Mantri Fasal Bima Yojana (PMFBY)
-                            </a> is a Government-sponsored crop insurance scheme that integrates multiple stakeholders on a single platform.
-                        </p>
-                        <p>Objectives:</p>
-                        <ol>
-                            <li>Provide insurance coverage and financial support to farmers in case crops get damaged due to natural calamities, pests & diseases.</li>
-                            <li>Stabilize the income of farmers to ensure a steady career and business growth.</li>
-                            <li>Encourage farmers to adopt innovative and modern agricultural practices.</li>
-                            <li>Ensure positive cash and credit flow in the agriculture sector.</li>
-                        </ol>
                     </div>
                     {/* Blog Detail End */}
 
@@ -115,7 +124,7 @@ const GovernmentSchemes = () => {
                         {/* Category End */}
 
                         {/* Recent Post Start */}
-                        <div>
+                        <div className='postsrecent'>
                             <h2>Recent Post</h2>
                             <div className='posts'>
                                 <div className="recentpost">
