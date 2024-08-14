@@ -23,6 +23,7 @@ import Crop from "./components/CropPredictionForm";
 import AiChatbot from "./pages/Chatbot/Chatbot.jsx";
 import ExpertDashboard from "./components/ExpertDashboard.jsx";
 import WeatherForecast from "./pages/WeatherPage/WeatherForecast.jsx";
+import MarketForm from "./components/MarketForm.js";
 function App() {
   return (
     //<Router>
@@ -47,6 +48,7 @@ function App() {
       <Route path="/home" element={<Home />} />
       <Route path="/fertilizer" element={<Fertilizer />} />
       <Route path="/crop" element={<Crop />} />
+      <Route path="/Market" element={<MarketForm/>}/>
       <Route
         path="/join-call/:roomId"
         element={
