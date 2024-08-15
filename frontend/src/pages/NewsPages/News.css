@@ -1,7 +1,13 @@
 /* General styles for the table */
-.News{
-    margin-left: 180px;
-    margin-right: 180px;
+.News {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    align-self: center;
+}
+.section-shaped{
+  display: flex;
+  justify-content: center;
 }
 .table {
     width: 100%;
@@ -11,45 +17,45 @@
     text-align: left;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */
     border-radius: 8px; /* Slightly round the corners */
-    overflow: hidden; /* Ensures rounded corners are visible */
-  }
+    overflow: hidden; 
+}
   
-  .table th, .table td {
+.table th, .table td {
     padding: 15px;
-    border: 2px solid #18660faf; /* Visible border color */
+    border: 2px solid #18660faf;
     background-color: #fff;
-  }
+}
   
-  .table th {
+.table th {
     background-color: #18660faf;
     color: white;
     font-weight: bold;
     position: sticky;
     top: 0;
     z-index: 1;
-  }
+}
   
-  .table tr:nth-child(even) {
+.table tr:nth-child(even) {
     background-color: #f9f9f9;
-  }
+}
   
-  .table tr:hover {
+.table tr:hover {
     background-color: #f1f1f1;
-  }
+}
   
-  .table td img {
+.table td img {
     border-radius: 5px;
     max-width: 100px;
-  }
+}
   
-  /* Pagination styles */
-  .pagination {
+/* Pagination styles */
+.pagination {
     display: flex;
     justify-content: center;
     padding: 1em 0;
-  }
+}
   
-  .pagination button {
+.pagination button {
     margin: 0 5px;
     padding: 0.5em 1em;
     border: 2px solid #18660faf; /* Border for pagination buttons */
@@ -58,28 +64,50 @@
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s;
-  }
+}
   
-  .pagination button:hover {
+.pagination button:hover {
     background-color: #18660faf;
-  }
+}
   
-  .pagination .active {
+.pagination .active {
     background-color: #18660faf;
     cursor: default;
-  }
+}
   
-  /* Card styles */
-  .card {
+/* Card styles */
+.card {
     background-color: #f8f9fa;
-  }
+}
   
-  .card-header {
+.card-header {
     background-color: #18660faf;
     color: white;
-  }
+}
   
-  .card-body {
+.card-body {
     background-color: #ffffff;
-  }
-  
+}
+
+
+@media (max-width: 576px) {
+    .section-shaped{
+      width: 95%;
+      justify-content: center;
+    }
+    .table {
+        font-size: 0.8em;
+    }
+
+    .table th, .table td {
+        padding: 8px;
+    }
+
+    .table td img {
+        max-width: 50px;
+    }
+
+    .pagination button {
+        padding: 0.2em 0.5em;
+    }
+}
