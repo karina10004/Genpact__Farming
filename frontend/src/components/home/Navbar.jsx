@@ -21,15 +21,15 @@ function Navbar() {
   const location = useLocation();
 
   const activeButtonStyles = {
-    bg: "yellow",
+    bg: "green.200",
     color: "black",
-    _hover: { bg: "yellow", color: "black" }, // Prevents hover color change when active
+    _hover: { bg: "green.200", color: "black" }, // Prevents hover color change when active
   };
 
   const inactiveButtonStyles = {
     bg: "transparent",
     color: "white",
-    _hover: { bg: "green.700" },
+    _hover: { bg: "green.200" },
   };
 
   const isActiveRoute = (route) => location.pathname.startsWith(route);
@@ -44,54 +44,87 @@ function Navbar() {
           display={{ md: "none" }}
           onClick={isOpen ? onClose : onOpen}
         />
-        <HStack spacing={4} alignItems="center"> {/* Reduced spacing */}
+        <HStack spacing={4} alignItems="center">
+          {" "}
+          {/* Reduced spacing */}
           <Box>
             <Heading size="md" color="white">
               Farming App
             </Heading>
           </Box>
-          <HStack as="nav" spacing={2} display={{ base: "none", md: "flex" }}> {/* Reduced spacing */}
+          <HStack as="nav" spacing={2} display={{ base: "none", md: "flex" }}>
+            {" "}
+            {/* Reduced spacing */}
             <Button
               as={NavLink}
               to="/Home"
-              {...(isActiveRoute("/Home") ? activeButtonStyles : inactiveButtonStyles)}
+              {...(isActiveRoute("/Home")
+                ? activeButtonStyles
+                : inactiveButtonStyles)}
             >
               Home
             </Button>
             <Button
               as={NavLink}
               to="/chats"
-              {...(isActiveRoute("/chats") ? activeButtonStyles : inactiveButtonStyles)}
+              {...(isActiveRoute("/chats")
+                ? activeButtonStyles
+                : inactiveButtonStyles)}
             >
               Community
             </Button>
             <Button
               as={NavLink}
               to="/BlogPost"
-              {...(isActiveRoute("/BlogPost") ? activeButtonStyles : inactiveButtonStyles)}
+              {...(isActiveRoute("/BlogPost")
+                ? activeButtonStyles
+                : inactiveButtonStyles)}
             >
               Blogs
             </Button>
             <Button
               as={NavLink}
               to="/list"
-              {...(isActiveRoute("/list") ? activeButtonStyles : inactiveButtonStyles)}
+              {...(isActiveRoute("/list")
+                ? activeButtonStyles
+                : inactiveButtonStyles)}
             >
               Expert
             </Button>
             <Button
               as={NavLink}
               to="/aiChatbot"
-              {...(isActiveRoute("/aiChatbot") ? activeButtonStyles : inactiveButtonStyles)}
+              {...(isActiveRoute("/aiChatbot")
+                ? activeButtonStyles
+                : inactiveButtonStyles)}
             >
-              Suggestions
+              Help
             </Button>
             <Menu>
               <MenuButton
                 as={Button}
-                bg={isActiveRoute("/weather") || isActiveRoute("/crop") || isActiveRoute("/fertilizer") ? "yellow" : "transparent"}
-                color={isActiveRoute("/weather") || isActiveRoute("/crop") || isActiveRoute("/fertilizer") ? "black" : "white"}
-                _hover={{ bg: isActiveRoute("/weather") || isActiveRoute("/crop") || isActiveRoute("/fertilizer") ? "yellow" : "green.700" }}
+                bg={
+                  isActiveRoute("/weather") ||
+                  isActiveRoute("/crop") ||
+                  isActiveRoute("/fertilizer")
+                    ? "green.200"
+                    : "transparent"
+                }
+                color={
+                  isActiveRoute("/weather") ||
+                  isActiveRoute("/crop") ||
+                  isActiveRoute("/fertilizer")
+                    ? "black"
+                    : "white"
+                }
+                _hover={{
+                  bg:
+                    isActiveRoute("/weather") ||
+                    isActiveRoute("/crop") ||
+                    isActiveRoute("/fertilizer")
+                      ? "green.200"
+                      : "green.700",
+                }}
               >
                 Predictions
               </MenuButton>
@@ -134,13 +167,26 @@ function Navbar() {
             <Menu>
               <MenuButton
                 as={Button}
-                bg={isActiveRoute("/news") || isActiveRoute("/GS") ? "yellow" : "transparent"}
-                color={isActiveRoute("/news") || isActiveRoute("/GS") ? "black" : "white"}
-                _hover={{ bg: isActiveRoute("/news") || isActiveRoute("/GS") ? "yellow" : "green.700" }}
+                bg={
+                  isActiveRoute("/news") || isActiveRoute("/GS")
+                    ? "green.200"
+                    : "transparent"
+                }
+                color={
+                  isActiveRoute("/news") || isActiveRoute("/GS")
+                    ? "black"
+                    : "white"
+                }
+                _hover={{
+                  bg:
+                    isActiveRoute("/news") || isActiveRoute("/GS")
+                      ? "green.200"
+                      : "green.700",
+                }}
               >
                 News
               </MenuButton>
-              <MenuList bg="green.700" borderColor="green.800">
+              <MenuList bg="green.700" borderColor="green.700">
                 <MenuItem
                   as={NavLink}
                   to="/news"
@@ -171,48 +217,79 @@ function Navbar() {
 
       {isOpen ? (
         <Box pb={4} display={{ md: "none" }}>
-          <Stack as="nav" spacing={2}> {/* Reduced spacing */}
+          <Stack as="nav" spacing={2}>
+            {" "}
+            {/* Reduced spacing */}
             <Button
               as={NavLink}
               to="/Home"
-              {...(isActiveRoute("/Home") ? activeButtonStyles : inactiveButtonStyles)}
+              {...(isActiveRoute("/Home")
+                ? activeButtonStyles
+                : inactiveButtonStyles)}
             >
               Home
             </Button>
             <Button
               as={NavLink}
               to="/chats"
-              {...(isActiveRoute("/chats") ? activeButtonStyles : inactiveButtonStyles)}
+              {...(isActiveRoute("/chats")
+                ? activeButtonStyles
+                : inactiveButtonStyles)}
             >
               Community
             </Button>
             <Button
               as={NavLink}
               to="/BlogPost"
-              {...(isActiveRoute("/BlogPost") ? activeButtonStyles : inactiveButtonStyles)}
+              {...(isActiveRoute("/BlogPost")
+                ? activeButtonStyles
+                : inactiveButtonStyles)}
             >
               Blogs
             </Button>
             <Button
               as={NavLink}
               to="/list"
-              {...(isActiveRoute("/list") ? activeButtonStyles : inactiveButtonStyles)}
+              {...(isActiveRoute("/list")
+                ? activeButtonStyles
+                : inactiveButtonStyles)}
             >
               Expert
             </Button>
             <Button
               as={NavLink}
               to="/aiChatbot"
-              {...(isActiveRoute("/aiChatbot") ? activeButtonStyles : inactiveButtonStyles)}
+              {...(isActiveRoute("/aiChatbot")
+                ? activeButtonStyles
+                : inactiveButtonStyles)}
             >
               Suggestions
             </Button>
             <Menu>
               <MenuButton
                 as={Button}
-                bg={isActiveRoute("/weather") || isActiveRoute("/crop") || isActiveRoute("/fertilizer") ? "yellow" : "green.700"}
-                color={isActiveRoute("/weather") || isActiveRoute("/crop") || isActiveRoute("/fertilizer") ? "black" : "white"}
-                _hover={{ bg: isActiveRoute("/weather") || isActiveRoute("/crop") || isActiveRoute("/fertilizer") ? "yellow" : "green.800" }}
+                bg={
+                  isActiveRoute("/weather") ||
+                  isActiveRoute("/crop") ||
+                  isActiveRoute("/fertilizer")
+                    ? "green.200"
+                    : "green.700"
+                }
+                color={
+                  isActiveRoute("/weather") ||
+                  isActiveRoute("/crop") ||
+                  isActiveRoute("/fertilizer")
+                    ? "black"
+                    : "white"
+                }
+                _hover={{
+                  bg:
+                    isActiveRoute("/weather") ||
+                    isActiveRoute("/crop") ||
+                    isActiveRoute("/fertilizer")
+                      ? "green.200"
+                      : "green.800",
+                }}
               >
                 Predictions
               </MenuButton>
@@ -252,9 +329,22 @@ function Navbar() {
             <Menu>
               <MenuButton
                 as={Button}
-                bg={isActiveRoute("/news") || isActiveRoute("/GS") ? "yellow" : "green.700"}
-                color={isActiveRoute("/news") || isActiveRoute("/GS") ? "black" : "white"}
-                _hover={{ bg: isActiveRoute("/news") || isActiveRoute("/GS") ? "yellow" : "green.800" }}
+                bg={
+                  isActiveRoute("/news") || isActiveRoute("/GS")
+                    ? "green.200"
+                    : "green.700"
+                }
+                color={
+                  isActiveRoute("/news") || isActiveRoute("/GS")
+                    ? "black"
+                    : "white"
+                }
+                _hover={{
+                  bg:
+                    isActiveRoute("/news") || isActiveRoute("/GS")
+                      ? "green.200"
+                      : "green.800",
+                }}
               >
                 News
               </MenuButton>

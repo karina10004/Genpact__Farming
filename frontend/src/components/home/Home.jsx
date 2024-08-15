@@ -2,7 +2,8 @@ import React from "react";
 import { Box, Flex, Text, Image, Heading, VStack } from "@chakra-ui/react";
 import Navbar from "./Navbar";
 import Weather from "./Weather"; // Import the Weather component
-
+import Services from "./Services";
+import Footer from "./Footer";
 function HomePage() {
   return (
     <>
@@ -43,6 +44,8 @@ function HomePage() {
           <Weather /> {/* Add the Weather component here */}
         </VStack>
       </Box>
+      <Services />
+      <Footer />
     </>
   );
 }
