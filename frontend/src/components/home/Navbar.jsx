@@ -23,7 +23,7 @@ function Navbar() {
   const activeButtonStyles = {
     bg: "yellow",
     color: "black",
-    _hover: { bg: "yellow", color: "black" }, // Prevents hover color change when active
+    _hover: { bg: "yellow", color: "black" },
   };
 
   const inactiveButtonStyles = {

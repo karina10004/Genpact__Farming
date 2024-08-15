@@ -120,3 +120,52 @@ input{
     display: flex;
     gap: 5px;
 }
+@media (max-width: 768px) {
+    .Container {
+        flex-direction: column;
+        /* margin-left: 0; */
+    }
+
+    .leftcontainer,
+    .rightcontainer {
+        width: auto;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .rightcontainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .recentpost {
+        width:  75%;
+    }
+}
+
+@media (max-width: 1462px) {
+    .Container{
+        gap: 3%;
+    }
+    .img {
+        max-width: 100%;
+        height: auto;
+    }
+    .rightcontainer{
+        margin-left: 0px;
+        margin-right: 5%;
+    }
+    .leftcontainer{
+        margin-left: 5%;
+        margin-right: 0px;
+    }
+    .states {
+        font-size: medium;
+        padding-left: 10px;
+    }
+    .recentpost{
+        width: 85%;
+    }
+    .details {
+        width: 100%;
+    }
+}
