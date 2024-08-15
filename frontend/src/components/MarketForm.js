@@ -38,17 +38,19 @@ const MarketForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);  // Start loading
+    const params = {
+      'api-key': '579b464db66ec23bdd000001cdd3946e44ce4aad7209ff7b23ac571b',
+      format: 'json',
+      'filters[State.keyword]': state || customState,
+      'filters[District.keyword]': market || customMarket,
+      'filters[Commodity.keyword]': commodity || customCommodity,
+    };
     try {
-      const response = await axios.get('http://127.0.0.1:5000/request', {
-        params: { 
-            commodity: customCommodity || commodity, 
-            state: customState || state, 
-          
-            market: customMarket || market 
-        },
+      const response = await axios.get('https://api.data.gov.in/resource/35985678-0d79-46b4-9ed6-6f13308a1d24', {
+        params: params,
         headers: {
-            'Content-Type': 'application/json',
-          },
+          'accept': 'application/json',
+        },
         timeout: 30000,
       });
      
@@ -62,7 +64,7 @@ const MarketForm = () => {
      //const filteredData = response.data.filter(item => item.City.toLowerCase() === market.toLowerCase());
       //setData(filteredData);
       //console.log(parsedData);
-      setData(response.data);
+      setData(response.data.records);
       setError('');
     } catch (err) {
       setError('An error occurred while fetching data.');
@@ -79,25 +81,38 @@ const MarketForm = () => {
       <Table variant='striped' colorScheme='blue'>
         <Thead>
           <Tr>
-            <Th >S.No</Th>
-            <Th width="150">City</Th>
-            <Th width="150">Commodity</Th>
-            <Th width="150" >Min Prize</Th>
-            <Th>Max Prize</Th>
-            <Th>Model Prize</Th>
-            <Th>Date</Th>
+            <Th>State</Th>
+            <Th>District</Th>
+            <Th>Market</Th>
+            <Th>Commodity</Th>
+            <Th>Variety</Th>
+            <Th>Grade</Th>
+            <Th>Arrival Date</Th>
+            <Th>Min Price</Th>
+            <Th>Max Price</Th>
+            <Th>Modal Price</Th>
           </Tr>
         </Thead>
         <Tbody >
           {data.map((item, index) => (
             <Tr border key={index}>
-              <Td>{item["S.No"]}</Td>
-              <Td >{item["City"]}</Td>
-              <Td>{item["Commodity"]}</Td>
-              <Td textColor="red">{item["Min Prize"]}</Td>
-              <Td  textColor="green">{item["Max Prize"]}</Td>
-              <Td>{item["Model Prize"]}</Td>
-              <Td>{item["Date"]}</Td>
+              {/* <Td>{item["S.No"]}</Td> */}
+              {/* <Td >{item["City"]}</Td> */}
+              {/* <Td>{item["Commodity"]}</Td> */}
+              {/* <Td textColor="red">{item["Min Prize"]}</Td> */}
+              {/* <Td  textColor="green">{item["Max Prize"]}</Td> */}
+              {/* <Td>{item["Model Prize"]}</Td> */}
+              {/* <Td>{item["Date"]}</Td> */}
+              <Td>{item.State}</Td>
+              <Td>{item.District}</Td>
+              <Td>{item.Market}</Td>
+              <Td>{item.Commodity}</Td>
+              <Td>{item.Variety}</Td>
+              <Td>{item.Grade}</Td>
+              <Td>{item.Arrival_Date}</Td>
+              <Td textColor="red">{item.Min_Price}</Td>
+              <Td   textColor="green">{item.Max_Price}</Td>
+              <Td>{item.Modal_Price}</Td>
             </Tr>
           ))}
         </Tbody>
@@ -162,7 +177,7 @@ const MarketForm = () => {
             />
           </FormControl>
           <FormControl>
-            <FormLabel>Market</FormLabel>
+            <FormLabel>District</FormLabel>
             <Select value={market} onChange={(e) => setMarket(e.target.value)}>
               <option value="">Select Market</option>
               <option value="Bangalore">Bangalore</option>
