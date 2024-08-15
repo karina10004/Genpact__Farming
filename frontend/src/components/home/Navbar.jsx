@@ -1,24 +1,75 @@
-import React from "react";
+import { Button } from "@chakra-ui/button";
+import { useDisclosure } from "@chakra-ui/hooks";
+import { Box, Text } from "@chakra-ui/layout";
+import { Flex, Spacer } from "@chakra-ui/react";
 import {
-  Box,
-  Flex,
-  HStack,
   Menu,
   MenuButton,
-  MenuList,
+  MenuDivider,
   MenuItem,
+  MenuList,
+} from "@chakra-ui/menu";
+import ProfileModal from "../miscellaneous/ProfileModal";
+
+import { useNavigate } from "react-router";
+import React from "react";
+import {
+  HStack,
   IconButton,
-  useDisclosure,
   Stack,
-  Button,
   Heading,
 } from "@chakra-ui/react";
 import { NavLink, useLocation } from "react-router-dom";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { Avatar } from "@chakra-ui/avatar";
+import { ChatState } from "../../context/ChatProvider";
+import { useState } from "react";
+import { useToast } from "@chakra-ui/toast";
 
 function Navbar() {
+  const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const location = useLocation();
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const logoutHandler = () => {
+    localStorage.removeItem("userInfo");
+    navigate("/");
+  };
+  const {
+    setSelectedChat,
+    user,
+    notification,
+    setNotification,
+    chats,
+    setChats,
+  } = ChatState();
+
+  const handleSearch = async () => {
+    try {
+      setLoading(true);
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
+
+
+
+      setLoading(false);
+      //   console.log(data);
+    } catch (error) {
+      toast({
+        title: "Error Occured!",
+        description: "Failed to Load the Search Results",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom-left",
+      });
+    }
+  };
 
   const activeButtonStyles = {
     bg: "yellow",
@@ -163,6 +214,27 @@ function Navbar() {
                 >
                   Government Schemes
                 </MenuItem>
+              </MenuList>
+            </Menu>
+            <Menu>
+              <MenuButton
+                as={Button}
+                bg="transparent"
+                marginLeft={590}
+              >
+                <Avatar
+                  size="sm"
+                  cursor="pointer"
+                  name={user.name}
+                  src={user.pic}
+                />
+              </MenuButton>
+              <MenuList >
+                <ProfileModal user={user}>
+                  <MenuItem>My Profile</MenuItem>{" "}
+                </ProfileModal>
+                <MenuDivider />
+                <MenuItem onClick={logoutHandler}>Logout</MenuItem>
               </MenuList>
             </Menu>
           </HStack>
