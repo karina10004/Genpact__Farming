@@ -22,7 +22,10 @@ const ContextProvider = ({ children }) => {
   const userVideo = useRef();
   const connectionRef = useRef();
 
-  const socket = useMemo(() => io("https://genpact-farming.onrender.com"), []);
+  const socket = useMemo(
+    () => io("https://genpact-farming-1.onrender.com"),
+    []
+  );
 
   useEffect(() => {
     navigator.mediaDevices

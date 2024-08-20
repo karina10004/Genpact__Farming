@@ -22,7 +22,7 @@ const BlogPosts = () => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get(
-          "https://genpact-farming.onrender.com/api/blog"
+          "https://genpact-farming-1.onrender.com/api/blog"
         );
         setPosts(response.data);
         setLoading(false);
@@ -52,38 +52,39 @@ const BlogPosts = () => {
     );
 
   return (
-    <div><Navbar/>
-    <Box maxW="800px" mx="auto" p={8}>
-      <Heading mb={8} textAlign="center">
-        Blog Posts
-      </Heading>
-      <VStack spacing={6} align="stretch">
-        {posts.map((post) => (
-          <Box
-            key={post._id}
-            p={6}
-            borderWidth="1px"
-            borderRadius="lg"
-            boxShadow="md"
-            transition="transform 0.2s"
-            _hover={{ transform: "scale(1.02)", boxShadow: "lg" }}
-          >
-            <Text fontSize="2xl" fontWeight="bold" mb={4}>
-              {post.title}
-            </Text>
-            <Text mb={4}>{post.content.substring(0, 100)}...</Text>
-            <Link to={`/blog/${post._id}`}>
-              <Button colorScheme="green">Read More</Button>
-            </Link>
-          </Box>
-        ))}
-      </VStack>
-      <Center mt={8}>
-        <Button colorScheme="green" onClick={() => navigate("/Blog")}>
-          Add Blog
-        </Button>
-      </Center>
-    </Box>
+    <div>
+      <Navbar />
+      <Box maxW="800px" mx="auto" p={8}>
+        <Heading mb={8} textAlign="center">
+          Blog Posts
+        </Heading>
+        <VStack spacing={6} align="stretch">
+          {posts.map((post) => (
+            <Box
+              key={post._id}
+              p={6}
+              borderWidth="1px"
+              borderRadius="lg"
+              boxShadow="md"
+              transition="transform 0.2s"
+              _hover={{ transform: "scale(1.02)", boxShadow: "lg" }}
+            >
+              <Text fontSize="2xl" fontWeight="bold" mb={4}>
+                {post.title}
+              </Text>
+              <Text mb={4}>{post.content.substring(0, 100)}...</Text>
+              <Link to={`/blog/${post._id}`}>
+                <Button colorScheme="green">Read More</Button>
+              </Link>
+            </Box>
+          ))}
+        </VStack>
+        <Center mt={8}>
+          <Button colorScheme="green" onClick={() => navigate("/Blog")}>
+            Add Blog
+          </Button>
+        </Center>
+      </Box>
     </div>
   );
 };

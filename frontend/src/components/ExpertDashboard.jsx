@@ -30,13 +30,13 @@ const ExpertDashboard = () => {
       try {
         // Fetch pending consultation requests
         const requestsResponse = await axios.get(
-          `https://genpact-farming.onrender.com/api/call/pending/${expert._id}`
+          `https://genpact-farming-1.onrender.com/api/call/pending/${expert._id}`
         );
         setRequests(requestsResponse.data);
 
         // Fetch scheduled calls for the expert
         const callsResponse = await axios.get(
-          `https://genpact-farming.onrender.com/api/call/expert/${expert._id}`
+          `https://genpact-farming-1.onrender.com/api/call/expert/${expert._id}`
         );
         setCalls(callsResponse.data);
 
@@ -53,7 +53,7 @@ const ExpertDashboard = () => {
   const handleUpdateStatus = async (id, status) => {
     try {
       await axios.patch(
-        `https://genpact-farming.onrender.com/api/call/${id}/status`,
+        `https://genpact-farming-1.onrender.com/api/call/${id}/status`,
         {
           status,
         }

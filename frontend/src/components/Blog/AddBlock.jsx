@@ -45,7 +45,7 @@ const AddBlogPage = () => {
 
     try {
       const response = await axios.post(
-        "https://genpact-farming.onrender.com/api/blog",
+        "https://genpact-farming-1.onrender.com/api/blog",
         blogPost
       );
       console.log("Blog post created:", response.data);
