@@ -26,7 +26,7 @@ const FarmerCalls = () => {
   const fetchCalls = async () => {
     try {
       const response = await axios.get(
-        `https://genpact-farming.onrender.com/api/call/farmer/${user._id}`
+        `https://genpact-farming-1.onrender.com/api/call/farmer/${user._id}`
       );
       setCalls(response.data);
       setLoading(false);

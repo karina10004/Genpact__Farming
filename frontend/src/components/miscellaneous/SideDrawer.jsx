@@ -80,7 +80,7 @@ const SideDrawer = () => {
       };
 
       const { data } = await axios.get(
-        `https://genpact-farming.onrender.com/api/user?search=${search}`,
+        `https://genpact-farming-1.onrender.com/api/user?search=${search}`,
         config
       );
 
@@ -111,7 +111,7 @@ const SideDrawer = () => {
         },
       };
       const { data } = await axios.post(
-        `https://genpact-farming.onrender.com/api/chat`,
+        `https://genpact-farming-1.onrender.com/api/chat`,
         { userId },
         config
       );
@@ -134,7 +134,7 @@ const SideDrawer = () => {
 
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <Box
         d="flex"
         justifyContent="space-between"

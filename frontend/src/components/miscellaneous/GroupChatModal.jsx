@@ -60,7 +60,7 @@ const GroupChatModal = ({ children }) => {
         },
       };
       const { data } = await axios.get(
-        `https://genpact-farming.onrender.com/api/user?search=${search}`,
+        `https://genpact-farming-1.onrender.com/api/user?search=${search}`,
         config
       );
       console.log(data);
@@ -101,7 +101,7 @@ const GroupChatModal = ({ children }) => {
         },
       };
       const { data } = await axios.post(
-        `https://genpact-farming.onrender.com/api/chat/group`,
+        `https://genpact-farming-1.onrender.com/api/chat/group`,
         {
           name: groupChatName,
           users: JSON.stringify(selectedUsers.map((u) => u._id)),

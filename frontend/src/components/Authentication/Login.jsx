@@ -39,7 +39,7 @@ const Login = () => {
         },
       };
       const { data } = await axios.post(
-        "https://genpact-farming.onrender.com/api/user/login",
+        "https://genpact-farming-1.onrender.com/api/user/login",
         { email, password },
         config
       );

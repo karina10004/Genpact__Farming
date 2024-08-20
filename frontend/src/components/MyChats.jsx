@@ -26,7 +26,7 @@ const MyChats = ({ fetchAgain }) => {
       };
 
       const { data } = await axios.get(
-        "https://genpact-farming.onrender.com/api/chat",
+        "https://genpact-farming-1.onrender.com/api/chat",
         config
       );
       setChats(data);
