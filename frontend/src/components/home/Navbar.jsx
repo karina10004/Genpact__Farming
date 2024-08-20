@@ -13,12 +13,7 @@ import ProfileModal from "../miscellaneous/ProfileModal";
 
 import { useNavigate } from "react-router";
 import React from "react";
-import {
-  HStack,
-  IconButton,
-  Stack,
-  Heading,
-} from "@chakra-ui/react";
+import { HStack, IconButton, Stack, Heading } from "@chakra-ui/react";
 import { NavLink, useLocation } from "react-router-dom";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { Avatar } from "@chakra-ui/avatar";
@@ -36,14 +31,10 @@ function Navbar() {
     localStorage.removeItem("userInfo");
     navigate("/");
   };
-  const {
-    setSelectedChat,
-    user,
-    notification,
-    setNotification,
-    chats,
-    setChats,
-  } = ChatState();
+  const { setSelectedChat, notification, setNotification, chats, setChats } =
+    ChatState();
+
+  const user = JSON.parse(localStorage.getItem("userInfo"));
 
   const handleSearch = async () => {
     try {
@@ -54,8 +45,6 @@ function Navbar() {
           Authorization: `Bearer ${user.token}`,
         },
       };
-
-
 
       setLoading(false);
       //   console.log(data);
@@ -263,11 +252,7 @@ function Navbar() {
               </MenuList>
             </Menu>
             <Menu>
-              <MenuButton
-                as={Button}
-                bg="transparent"
-                marginLeft={590}
-              >
+              <MenuButton as={Button} bg="transparent" marginLeft={590}>
                 <Avatar
                   size="sm"
                   cursor="pointer"
@@ -275,7 +260,7 @@ function Navbar() {
                   src={user.pic}
                 />
               </MenuButton>
-              <MenuList >
+              <MenuList>
                 <ProfileModal user={user}>
                   <MenuItem>My Profile</MenuItem>{" "}
                 </ProfileModal>
