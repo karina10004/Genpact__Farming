@@ -1,12 +1,10 @@
-
-
 import React from "react";
 import { Box, Text, Heading, VStack } from "@chakra-ui/react";
 import Navbar from "./Navbar";
 import Weather from "./Weather"; // Import the Weather component
 import Services from "./Services";
 import Footer from "./Footer";
-import Slider from "react-slick"; 
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 function HomePage() {
