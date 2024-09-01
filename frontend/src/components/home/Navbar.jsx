@@ -140,6 +140,15 @@ function Navbar() {
             >
               Help
             </Button>
+            <Button
+              as={NavLink}
+              to="/Market"
+              {...(isActiveRoute("/Market")
+                ? activeButtonStyles
+                : inactiveButtonStyles)}
+            >
+              Mandi Info
+            </Button>
             <Menu>
               <MenuButton
                 as={Button}
